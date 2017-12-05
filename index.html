@@ -1,0 +1,30 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tyler Bowman Capstone</title>
+</head>
+<body ng-app = "TeacherHub">
+    <nav ng-include="'app/teacherHub/partials/navBar.html'"></nav>
+
+    <div ng-view></div>
+    
+
+    <script src="./lib/node_modules/angular/angular.min.js"></script>
+    <script src="./lib/node_modules/firebase/firebase.js"></script>
+    <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+
+    <script src="./app/app.js"></script>
+    <script src="./app/app.config.js"></script>
+
+    <script src="./app/auth/factories/AuthFactory.js"></script>
+    <script src="./app/auth/controllers/AuthCtrl.js"></script>
+    
+
+    <script src="./app/teacherHub/controllers/loginController.js"></script>
+    <script src="./app/teacherHub/factories/userFactory.js"></script>
+    <script src="./app/teacherHub/controllers/teacherDashController.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "lib",
+  "version": "1.0.0",
+  "description": "client-side capstone project for NSS",
+  "main": "app/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tgbowman/client-side-capstone.git"
+  },
+  "author": "Tyler Bowman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tgbowman/client-side-capstone/issues"
+  },
+  "homepage": "https://github.com/tgbowman/client-side-capstone#readme",
+  "dependencies": {
+    "angular": "^1.6.7",
+    "angular-route": "^1.6.7"
+  },
+  "devDependencies": {
+    "eslint-grunt": "^1.0.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^20.1.0"
+  }
+}
