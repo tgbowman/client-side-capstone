@@ -1,8 +1,11 @@
 app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location) {
     $scope.auth = {}
 
+    $scope.loggedIn = false
+
     $scope.logoutUser = function(){
         AuthFactory.logout()
+        $scope.loggedIn = false
         $location.url('/auth')
     }
 
@@ -10,6 +13,7 @@ app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location)
         AuthFactory.authenticate(credentials).then(function (didLogin) {
             $scope.login = {}
             $scope.register = {}
+            $scope.loggedIn = true
             console.log("You logged in")
             $location.url("/teacherHub/teacherDash")
         })
@@ -30,6 +34,7 @@ app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location)
             }
             userFactory.createNewUser($scope.newUser).then(() => {
                 console.log("You have created a new user")
+                $scope.loggedIn = true
                 
             })
             $location.url("/teacherHub/teacherDash")
