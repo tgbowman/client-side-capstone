@@ -9,7 +9,7 @@ angular
             },
             "createClass": {
                 value: function(classObject){
-                    return firebase.auth().currentUser.getToken(true)
+                    return firebase.auth().currentUser.getIdToken(true)
                         .then( idToken => {
                             return $http
                                 .post(`https://client-side-caps.firebaseio.com/classes/.json?auth=${idToken}`, classObject)
@@ -49,7 +49,7 @@ angular
             },
             "deleteClass": {
                 value: function(classId){
-                    return firebase.auth().currentUser.getToken(true)
+                    return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken=>{
                             $http
                                 .delete(

@@ -4,7 +4,7 @@ angular
         return Object.create(null, {
             "add":{
                 value: function(studentClassObj){
-                    return firebase.auth().currentUser.getToken(true)
+                    return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
                                 .post(`https://client-side-caps.firebaseio.com/classStudent/.json?auth=${idToken}`, studentClassObj)
@@ -22,6 +22,15 @@ angular
                                 relationshipArray.push(relationshipData.data[key])
                             }
                             return relationshipArray
+                        })
+                }
+            },
+            "deleteRel": {
+                value: function(relId){
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http
+                                .delete(`https://client-side-caps.firebaseio.com/classStudent/${relId}/.json?auth=${idToken}`)
                         })
                 }
             }

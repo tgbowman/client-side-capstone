@@ -1,4 +1,4 @@
-angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, userFactory, AuthFactory, $location){
+angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, userFactory, AuthFactory, $location, studentFactory){
     userFactory.getUser().then(user => {
 
         $scope.firstName = user.firstName
@@ -11,6 +11,9 @@ angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, user
     $scope.classList = function() {
         $location.url("/classes/classList")
     }
- 
+    studentFactory.getStudents()
+        .then(() => {
+            console.log("student cache populated")
+        })
 
 })

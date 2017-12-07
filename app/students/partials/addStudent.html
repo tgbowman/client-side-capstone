@@ -1,4 +1,5 @@
 <h2>Add Student to {{currentClass.name}}:</h2>
+<h3>Add a new student:</h3>
 <form ng-submit="addStudent()">
     <fieldset>
         <label>Student Information:</label><br>
@@ -22,3 +23,8 @@
     </fieldset>
     <button>Add Student</button>
 </form>
+<h3>Add an existing student:</h3>
+<input type="text" ng-model = "studentSearch" placeholder="Search Students">
+<ul ng-repeat="student in students | filter: studentSearch">
+    <li><a href="#">{{student.studentFirstName}} {{student.studentLastName}}</a><button ng-click="addExistingStudent(student.id)">Add Student to Class</button><button ng-click="delete(student.id)">Delete Student</button></li> 
+</ul>

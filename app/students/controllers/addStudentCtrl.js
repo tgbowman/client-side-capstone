@@ -1,9 +1,40 @@
-angular.module("TeacherHub").controller("addStudentCtrl", function($scope, $location, $routeParams, classFactory, studentFactory, classStudentFactory){
-    $scope.newStudent = {}
+angular.module("TeacherHub").controller("addStudentCtrl", function($scope, $location, $routeParams, classFactory, studentFactory, classStudentFactory, $timeout){
+    $scope.currentClass = classFactory.currentClass
+    $scope.students = null
+    //function that executes on page load to get all students from the students DB.
+    studentFactory.getStudents()
+        .then(studentsList => {
+            $scope.students = studentsList
+        })
+
+    //function that will execute on button click to delete a student from the DB
+    $scope.delete = function(studentId){
+        studentFactory.deleteStudent(studentId)
+            .then(()=>{
+                studentFactory.getStudents()
+                    .then(students => {
+                        $scope.students = students
+                        console.log("student deletion complete")
+                    })
+            }
+            )
+    }
+
+    //function that will execute on button click to add an already created student to a class
+    $scope.addExistingStudent = function(studentId){
+        let newRel = {
+            "studentId": studentId,
+            "classId": classFactory.currentClass.id
+        }
+        classStudentFactory.add(newRel)
+            .then(()=>{
+            })
+    }
+    
+    //function that will execute on button click that takes the student Form data creates a student object and adds it to the student DB and adds them to the class
     $scope.addStudent = function(){
         studentFactory.getStudents()
             .then(studentsArray => {
-               
                 let studentId= null
                 let newStudentClassRel = {}
                 let currentClass = classFactory.currentClass
