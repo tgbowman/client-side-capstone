@@ -1,5 +1,5 @@
 <h2>{{firstName}}'s Classes:</h2>
 <ul ng-repeat="class in classes">
-    <li><a href="#!/classes/classDash/{{class.id}}">{{class.name}}</a></li>
-    <!-- <button ng-click="classFactory.deleteClass({{class.id}})">Delete Class</button> -->
+    <li><a href="#!/classes/classDash/{{class.id}}">{{class.name}}</a><button ng-click="deleteClass(class.id)">Delete Class</button></li>
+    
 </ul>

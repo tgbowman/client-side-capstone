@@ -38,6 +38,7 @@ angular
                                 studentArray.push(studentData.data[key])
                             }
                             this.cachedStudents = studentArray
+                            console.log("Student Cache Updated", this.cachedStudents)
                             return studentArray
                         }
                         )

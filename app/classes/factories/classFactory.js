@@ -1,8 +1,13 @@
 angular
     .module("TeacherHub")
-    .factory("classFactory", function($http){
+    .factory("classFactory", function($http, userFactory){
         return Object.create(null, {
             "currentClass": {
+                value: null,
+                enumerable: true,
+                writable: true
+            },
+            "classCache":{
                 value: null,
                 enumerable: true,
                 writable: true
@@ -18,18 +23,19 @@ angular
                 }
             },
             "getClasses": {
-                value: function(currentUser){
+                value: function(){
                     return $http
                         .get("https://client-side-caps.firebaseio.com/classes/.json")
                         .then(classData => {
                             let userClasses = []
                             for(let key in classData.data){
-                                if(classData.data[key].teacherId === currentUser.id){
+                                if(classData.data[key].teacherId === userFactory.currentUser.id){
                                     classData.data[key].id=key
                                     userClasses.push(classData.data[key])
                                 }
                             }
-                            console.log(userClasses)
+                            this.classCache = userClasses
+                            console.log("Class Cache Updated", this.classCache)
                             return userClasses 
                         })
                 }
@@ -51,10 +57,13 @@ angular
                 value: function(classId){
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken=>{
-                            $http
+                            return $http
                                 .delete(
                                     `https://client-side-caps.firebaseio.com/classes/${classId}/.json?auth=${idToken}`
                                 )
+                                .then(r=>{
+                                    return this.getClasses()
+                                })
                         })
                 }
             }
