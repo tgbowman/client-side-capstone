@@ -5,11 +5,11 @@ angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, user
     })
 
     $scope.addClass = function() {
-        $location.url("/teacherHub/classCreator")
+        $location.url("/classes/classCreator")
     }
 
     $scope.classList = function() {
-        $location.url("/teacherHub/classList")
+        $location.url("/classes/classList")
     }
  
 

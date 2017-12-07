@@ -3,7 +3,7 @@ module.exports = function(grunt) {// Project configuration.
         pkg: grunt.file.readJSON("package.json"),
         watch: {
             scripts: {
-                files: ["**/app/**/*.js", "!node_modules/**/*.js" ],
+                files: ["**/app/**/*.js", "!**/lib/node_modules/**/*.js" ],
                 tasks: ["eslint"],
                 options: {
                     spawn: false,
@@ -11,7 +11,7 @@ module.exports = function(grunt) {// Project configuration.
             }
         },
         eslint: {
-            all: ["**/app/**/*.js", "!node_modules/**/*.js", "!build/*.js"]
+            all: ["**/app/**/*.js", "!**/lib/node_modules/**/*.js", "!build/*.js"]
         }, 
      
     })

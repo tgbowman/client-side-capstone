@@ -7,7 +7,7 @@ angular.module("TeacherHub")
                 currentUserData = user
                 console.log("User is authenticated")
                 $timeout(function () {
-                    $location.url("/teacherHub/teacherDash")
+                    $location.url("/teachers/teacherDash")
                 }, 500);
     
             } else {

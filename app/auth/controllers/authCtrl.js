@@ -15,7 +15,7 @@ app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location)
             $scope.register = {}
             $scope.loggedIn = true
             console.log("You logged in")
-            $location.url("/teacherHub/teacherDash")
+            $location.url("/teachers/teacherDash")
         })
     }
 
@@ -37,7 +37,7 @@ app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location)
                 $scope.loggedIn = true
                 
             })
-            $location.url("/teacherHub/teacherDash")
+            $location.url("/teachers/teacherDash")
     
 
         })
