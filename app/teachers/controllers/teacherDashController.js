@@ -1,7 +1,8 @@
-angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, userFactory, AuthFactory, classFactory, studentFactory, classStudentFactory, $location){
+angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, userFactory, AuthFactory, classFactory, studentFactory, classStudentFactory, $location, assignmentFactory, assignmentClassFactory, gradeFactory){
     userFactory.getUser().then(user => {
 
         $scope.firstName = user.firstName
+        $scope.updateCaches()
     })
 
     $scope.addClass = function() {
@@ -15,7 +16,14 @@ angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, user
         classFactory.getClasses()
         studentFactory.getStudents()
         classStudentFactory.get()
+        assignmentFactory.get()
+        assignmentClassFactory.get()
+        gradeFactory.get()
     }
-    $scope.updateCaches()
+
+    $scope.assignmentForm = function(){
+        $location.url("/assignments/assignmentCreator")
+    }
+
 
 })

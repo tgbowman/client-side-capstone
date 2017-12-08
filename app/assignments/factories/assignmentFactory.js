@@ -13,6 +13,11 @@ angular
                         .then(idToken => {
                             return $http
                                 .post(`https://client-side-caps.firebaseio.com/assignments/.json?auth=${idToken}`, assignmentObj)
+                                .then( r=>{
+                                    this.get()
+                                    return r
+                                }
+                                )
                         })
                 }
             },
@@ -27,6 +32,8 @@ angular
                                 assignmentsArray.push(returnData.data[key])
                             }
                             this.assignmentCache = assignmentsArray
+                            console.log("assignments cache update", assignmentsArray)
+                            return assignmentsArray
                         })
                 }
             },
@@ -37,7 +44,8 @@ angular
                             return $http
                                 .delete(`https://client-side-caps.firebaseio.com/assignments/${assignmentId}/.json?auth=${idToken}`)
                                 .then(r=>{
-                                    return this.get()
+                                    this.get()
+                                    return r
                                 })
                         })
                 }
