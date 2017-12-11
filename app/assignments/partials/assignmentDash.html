@@ -1,0 +1,5 @@
+<h1>{{assignmentName}}</h1>
+<button ng-click = "backToClass()">Class Dashboard</button>
+<ul ng-repeat = "student in students">
+    <li><a href="#">{{student.firstName}} {{student.lastName}}</a> <span>Grade:<input ng-model="student.grade" type="text" ng-keyup="updateGrade(student)" ></span></li>
+</ul>

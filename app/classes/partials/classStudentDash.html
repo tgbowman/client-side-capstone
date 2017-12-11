@@ -1,0 +1,8 @@
+<h1>{{currentStudent.studentFirstName}} {{currentStudent.studentLastName}}</h1>
+<h2>Class: {{currentClass.name}}</h2>
+<h3>Assignments:</h3>
+<ul ng-repeat="assignment in assignments">
+    <li>{{assignment.title}} <span>Grade: {{assignment.grade}}</span></li>
+</ul>
+
+<h3>Overall Grade: {{overallGrade}}</h3>

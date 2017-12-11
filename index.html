@@ -7,7 +7,7 @@
     <title>Tyler Bowman Capstone</title>
 </head>
 <body ng-app = "TeacherHub">
-    <nav ng-include="'app/teacherHub/partials/navBar.html'"></nav>
+    <nav ng-include="'app/teachers/partials/navBar.html'"></nav>
 
     <div ng-view></div>
     
@@ -23,13 +23,27 @@
     <script src="./app/auth/controllers/AuthCtrl.js"></script>
     
 
-    <script src="./app/teacherHub/controllers/loginController.js"></script>
-    <script src="./app/teacherHub/factories/userFactory.js"></script>
-    <script src="./app/teacherHub/factories/classFactory.js"></script>
-    <script src="./app/teacherHub/controllers/teacherDashController.js"></script>
-    <script src="./app/teacherHub/controllers/classCreatorCtrl.js"></script>
-    <script src="./app/teacherHub/controllers/classDashCtrl.js"></script>
-    <script src="./app/teacherHub/factories/classFactory.js"></script>
-    <script src="./app/teacherHub/controllers/classListCtrl.js"></script>
+    <script src="./app/teachers/controllers/loginController.js"></script>
+    <script src="./app/teachers/factories/userFactory.js"></script>
+    <script src="./app/classes/factories/classFactory.js"></script>
+    <script src="./app/teachers/controllers/teacherDashController.js"></script>
+    <script src="./app/classes/controllers/classCreatorCtrl.js"></script>
+    <script src="./app/classes/controllers/classDashCtrl.js"></script>
+    <script src="./app/classes/factories/classFactory.js"></script>
+    <script src="./app/classes/controllers/classListCtrl.js"></script>
+    <script src="./app/classes/factories/classStudentFactory.js"></script>
+    <script src="./app/classes/controllers/classStudentDashCtrl.js"></script>
+
+    <script src="./app/students/controllers/addStudentCtrl.js"></script>
+    <script src="./app/students/factories/studentFactory.js"></script>
+    <script src= "./app/students/controllers/studentDashCtrl.js"></script>
+
+    <script src="./app/assignments/factories/assignmentFactory.js"></script>
+    <script src="./app/assignments/controllers/assignmentCreatorCtrl.js"></script>
+    <script src="./app/assignments/factories/assignmentClassFactory.js"></script>
+    <script src="./app/assignments/controllers/assignmentDashCtrl.js"></script>
+    <script src="./app/assignments/factories/gradeFactory.js"></script>
+
+
 </body>
 </html>
