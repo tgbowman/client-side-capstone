@@ -1,5 +1,10 @@
 <h1>{{currentStudent.studentFirstName}} {{currentStudent.studentLastName}}</h1>
+<h4><a href="mailto:{{currentStudent.parentEmail}}">Email Parent/Guardian</a></h4>
 <h2>Class Roster:</h2>
 <ul ng-repeat="class in classes">
     <li><a href="#!/classes/classStudentDash/{{class.id}}">{{class.name}}</a><span>Grade: {{class.grade}}</span></li>
+</ul>
+<h2>Discipline Incidents:</h2>
+<ul ng-repeat = "incident in incidents | orderBy: '-date'">
+    <li><a href="#!/discipline/disciplineDash/{{incident.id}}">{{incident.className}} {{incident.infraction}}</a> {{incident.date}}</li>
 </ul>
