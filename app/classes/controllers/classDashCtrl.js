@@ -57,6 +57,12 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
     $scope.deleteAssignmentFromClass = function(assignmentObj){
         let assToDelete = $scope.currentAssRel.filter(rel=>{return rel.assignmentId === assignmentObj.id})
         assignmentClassFactory.delete(assToDelete[0].id).then(()=>{
+            let stillInAssignments = assignmentClassFactory.assignmentRelCache.filter(assignment => {return assignment.assignmentId === assignmentObj.id})
+            if(stillInAssignments.length === 0){
+                assignmentFactory.delete(assignmentObj.id).then(r=>{
+                    console.log("Assignment completely deleted")
+                })
+            }
             $scope.getData()
         })
     }

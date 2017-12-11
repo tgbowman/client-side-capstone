@@ -1,4 +1,4 @@
-angular.module("TeacherHub").controller("assignmentDashCtrl", function($scope, assignmentFactory, assignmentClassFactory, studentFactory, classStudentFactory, classFactory, gradeFactory, $routeParams){
+angular.module("TeacherHub").controller("assignmentDashCtrl", function($scope, assignmentFactory, assignmentClassFactory, studentFactory, classStudentFactory, classFactory, gradeFactory, $routeParams, $location){
     $scope.students = []
     $scope.currentClass = classFactory.currentClass
     $scope.currentAssignment = null
@@ -6,6 +6,7 @@ angular.module("TeacherHub").controller("assignmentDashCtrl", function($scope, a
     $scope.myAssignment = null
 
     $scope.getStudents = function() {
+        console.log($scope.currentClass.id)
         $scope.myAssignment = assignmentClassFactory.assignmentRelCache.filter(rel=>{return rel.classId === $scope.currentClass.id && rel.assignmentId === $scope.assignmentId })
         $scope.assignmentName = assignmentFactory.assignmentCache.filter(assignmentObj => {return assignmentObj.id === $scope.myAssignment[0].assignmentId})[0].title
         console.log($scope.myAssignment)
@@ -45,7 +46,12 @@ angular.module("TeacherHub").controller("assignmentDashCtrl", function($scope, a
             })
     }
 
+    $scope.backToClass = function() {
+        $location.url(`/classes/classDash/${$scope.currentClass.id}`)
+    }
+
     $scope.getStudents()
+    
 
 
 })

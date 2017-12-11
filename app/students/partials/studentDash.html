@@ -1,0 +1,5 @@
+<h1>{{currentStudent.studentFirstName}} {{currentStudent.studentLastName}}</h1>
+<h2>Class Roster:</h2>
+<ul ng-repeat="class in classes">
+    <li><a href="#!/classes/classStudentDash/{{class.id}}">{{class.name}}</a><span>Grade: {{class.grade}}</span></li>
+</ul>

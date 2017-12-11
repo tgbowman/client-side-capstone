@@ -2,7 +2,7 @@
 <button ng-click = "addStudentForm()">Add Student</button>
 <h2>Students:</h2>
 <ul ng-repeat = "student in myStudents">
-    <li><a href="#">{{student.studentFirstName}} {{student.studentLastName}}</a>Overall Grade: {{student.overallGrade}}<button ng-click="deleteStudentFromClass(student)">Remove Student from Class</button></li>
+    <li><a href="#!/students/studentDash/{{student.id}}">{{student.studentFirstName}} {{student.studentLastName}}</a>Overall Grade: {{student.overallGrade}}<button ng-click="deleteStudentFromClass(student)">Remove Student from Class</button></li>
 </ul>
 <h2>Assignments:</h2>
 <ul ng-repeat = "assignment in myAssignments">
