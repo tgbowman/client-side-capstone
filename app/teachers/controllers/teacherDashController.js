@@ -31,5 +31,9 @@ angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, user
         $location.url("/discipline/disciplineForm")
     }
 
+    $scope.studentList = function(){
+        $location.url("/students/studentList")
+    }
+
 
 })

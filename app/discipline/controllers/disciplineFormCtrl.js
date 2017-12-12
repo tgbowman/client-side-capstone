@@ -1,4 +1,4 @@
-angular.module("TeacherHub").controller("disciplineFormCtrl", function($scope, studentFactory, disciplineFactory, classFactory, userFactory, classStudentFactory){
+angular.module("TeacherHub").controller("disciplineFormCtrl", function($scope, studentFactory, disciplineFactory, classFactory, userFactory, classStudentFactory, $location){
 
     $scope.newDiscipline = {}
     $scope.currentUser = userFactory.currentUser
@@ -18,7 +18,9 @@ angular.module("TeacherHub").controller("disciplineFormCtrl", function($scope, s
     $scope.addDiscipline = function(){
         $scope.newDiscipline.teacherId = $scope.currentUser.id
 
-        disciplineFactory.add($scope.newDiscipline)
+        disciplineFactory.add($scope.newDiscipline).then(r=>
+            $location.url(`/discipline/disciplineDash/${r.data.name}`)
+        )
     }
 
     $scope.infractions = [

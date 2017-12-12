@@ -1,0 +1,4 @@
+<input type="text" ng-model = "studentSearch" placeholder="Search Students">
+<ul ng-repeat="student in students | filter: studentSearch">
+    <li><a href="#!/students/studentDash/{{student.id}}">{{student.studentFirstName}} {{student.studentLastName}}</a></li> 
+</ul>
