@@ -48,7 +48,7 @@ angular
                             console.log(currentClass)
                             currentClass.data.id=key
                             this.currentClass = currentClass.data
-                            console.log(this.currentClass)
+                            console.log("the current Class is:", this.currentClass)
                             return currentClass.data
                         })
                 }

@@ -7,6 +7,11 @@ angular
                 enumerable: true,
                 writable: true
             },
+            "userCache": {
+                value: null,
+                enumerable: true,
+                writable: true
+            },
             "createNewUser": {
                 value: function(userObject){
                     return firebase.auth().currentUser.getToken(true)
@@ -41,6 +46,23 @@ angular
                             console.log(this.currentUser)
                             return currentUser
                         })
+                }
+            },
+            "getAll": {
+                value: function() {
+                    return $http
+                        .get("https://client-side-caps.firebaseio.com/users/.json")
+                        .then(userData=> {
+                            let userArray = []
+                            for(let key in userData.data){
+                                userData.data[key].id = key
+                                userArray.push(userData.data[key])
+                            }
+                            this.userCache = userArray
+                            console.log("The user cache has been updated", userArray)
+                            return userArray
+                        })
+                        
                 }
             }
         })

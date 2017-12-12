@@ -1,0 +1,29 @@
+<h1>Discipline Form:</h1>
+<form ng-submit="addDiscipline()">
+    <label> Select Class:
+        <select ng-model= "newDiscipline.classId" ng-change = "getStudents()">
+             <option ng-repeat = "class in classes" value="{{class.id}}">{{class.name}}</option>
+        </select>
+    </label> <br>
+    <label ng-if = "newDiscipline.classId">  
+        Date of Incident:
+        <input type = "date" ng-model = "newDiscipline.date">
+    </label> <br>
+    <label ng-if = "newDiscipline.date" >
+        Student:
+        <select ng-model = "newDiscipline.studentId">
+            <option ng-repeat = "student in students" value="{{student.id}}">{{student.studentFirstName}} {{student.studentLastName}}</option>
+        </select>
+    </label><br>
+    <label ng-if = "newDiscipline.studentId" >
+        Infraction:
+        <select ng-model = "newDiscipline.infraction">
+            <option ng-repeat = "infraction in infractions" value = "{{infraction}}">{{infraction}}</option>
+        </select>
+    </label> <br>   
+    <label ng-if = "newDiscipline.infraction" >
+        Detailed account of incident: <br>
+        <textarea ng-model= "newDiscipline.details" placeholder="Detailed description of incident"></textarea>
+    </label><br>    
+    <button ng-if = "newDiscipline.details">Submit Discipline Form</button>
+</form>

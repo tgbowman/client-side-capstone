@@ -1,8 +1,13 @@
 angular
     .module("TeacherHub")
-    .factory("gradeFactory", function($http, assignmentClassFactory, studentFactory){
+    .factory("gradeFactory", function($http, assignmentClassFactory, studentFactory, classFactory){
         return Object.create(null, {
             "gradeCache":{
+                value: null,
+                enumerable: true,
+                writable: true
+            },
+            "classAverageCache": {
                 value: null,
                 enumerable: true,
                 writable: true
@@ -32,6 +37,7 @@ angular
                             }
                             this.gradeCache = gradesArray
                             console.log("grades cache updated", gradesArray)
+                            this.classAverage()
                             return gradesArray
                         })
                 }
@@ -86,6 +92,35 @@ angular
                     return overallGrade
 
                 }
+            },
+            "classAverage": {
+                value: function(){
+                    let classes = classFactory.classCache
+                    let classAverages = []
+                    classes.forEach(clazz=>{
+                        let assignmentClassRel = assignmentClassFactory.assignmentRelCache.filter(rel=>{return rel.classId === clazz.id})
+                        if(assignmentClassRel.length > 0){
+                            assignmentClassRel.forEach(assRel=>{
+                                let gradeObj = this.gradeCache.filter(gradeO=>{return gradeO.assignmentClassId === assRel.id })
+                                let total = 0
+                                gradeObj.forEach(grade=>{
+                                    total += parseInt(grade.grade)
+                                }) 
+                                let classAverage = Math.round(total / gradeObj.length)
+                                let classAverageObj = {
+                                    "classAverage": classAverage,
+                                    "assignmentClassId": assRel.id
+                                }
+                                classAverages.push(classAverageObj)
+
+                            })
+                        }
+                    })
+                    this.classAverageCache = classAverages
+                    console.log("Class average cache update", classAverages)
+                    return classAverages
+                }
+
             }
         })
     })

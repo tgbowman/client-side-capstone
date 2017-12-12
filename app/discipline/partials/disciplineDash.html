@@ -1,0 +1,10 @@
+<h1>Incident Report:</h1>
+<h2>Student: {{student.studentFirstName}} {{student.studentLastName}}</h2>
+<h2>Class: {{incidentClass.name}}</h2>
+<h2>Teacher: {{teacher.firstName}} {{teacher.lastName}}</h2>
+<h3>Date of Incident: {{incident.date}}</h3>
+<h3>Infaction: {{incident.infraction}}</h3>
+<h3>Infraction Details: {{incident.details}}</h3>
+
+<button ng-click="emailReport(student.parentEmail)">Email Report to Parent/Guardian</button>
+
