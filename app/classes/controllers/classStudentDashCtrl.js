@@ -18,7 +18,28 @@ angular.module("TeacherHub").controller("classStudentDashCtrl", function($scope,
 
             let gradeObj = gradeFactory.gradeCache.filter(gradeObj => {return gradeObj.studentId === $scope.currentStudent.id && gradeObj.assignmentClassId === assignmentRel.id})[0]
             if(gradeObj){
+                let letterGrade = null
+                if(gradeObj.grade >= 0 && gradeObj.grade <= 69){
+                    letterGrade = "F"
+                } else{
+                    if(gradeObj.grade > 69 && gradeObj.grade <= 74){
+                        letterGrade = "D"
+                    } else{
+                        if(gradeObj.grade > 74 && gradeObj.grade <= 84){
+                            letterGrade = "C"
+                        } else{
+                            if(gradeObj.grade > 84 && gradeObj.grade <= 92){
+                                letterGrade = "B"
+                            } else {
+                                if(gradeObj.grade > 92) {
+                                    letterGrade = "A"
+                                }
+                            }
+                        }
+                    }
+                }
                 currentAssignment.grade = gradeObj.grade
+                currentAssignment.letterGrade = letterGrade
 
                 $scope.assignments.push(currentAssignment)
             }
@@ -68,9 +89,27 @@ angular.module("TeacherHub").controller("classStudentDashCtrl", function($scope,
         
         chart.draw(data, options)
     }
-
+    $scope.letterGrade = null
     $scope.overallGrade = gradeFactory.overall($scope.currentClass.id, $scope.currentStudent.id)
-
+    if($scope.overallGrade >= 0 && $scope.overallGrade <= 69){
+        $scope.letterGrade = "F"
+    } else{
+        if($scope.overallGrade > 69 && $scope.overallGrade <= 74){
+            $scope.letterGrade = "D"
+        } else{
+            if($scope.overallGrade > 74 && $scope.overallGrade <= 84){
+                $scope.letterGrade = "C"
+            } else{
+                if($scope.overallGrade > 84 && $scope.overallGrade <= 92){
+                    $scope.letterGrade = "B"
+                } else {
+                    if($scope.overallGrade > 92) {
+                        $scope.letterGrade = "A"
+                    }
+                }
+            }
+        }
+    }
     getGrades()
 
 

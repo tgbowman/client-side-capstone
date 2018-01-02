@@ -1,13 +1,38 @@
 <h3>{{currentStudent.studentFirstName}} {{currentStudent.studentLastName}}</h3>
-<img id="studentProfilePic" width="250"><br>
-<a class="formBtn btn waves-effect waves-light" href="mailto:{{currentStudent.parentEmail}}"><i class="material-icons right">send</i>Email Parent/Guardian</a><br>
-<a class="formBtn btn waves-effect waves-light" href="mailto:{{currentStudent.studentEmail}}"><i class="material-icons right">send</i>Email {{currentStudent.studentFirstName}}</a>
+<img id="studentProfilePic" height="250"><br>
 
-<h4>Class Roster:</h4>
-<ul ng-repeat="class in classes">
-    <li><a href="#!/classes/classStudentDash/{{class.id}}">{{class.name}}</a><span>Grade: {{class.grade}}</span></li>
-</ul>
-<h4>Discipline Incidents:</h4>
-<ul ng-repeat = "incident in incidents | orderBy: '-date'">
-    <li><a href="#!/discipline/disciplineDash/{{incident.id}}">{{incident.className}} {{incident.infraction}}</a> {{incident.date}}</li>
-</ul>
+<a class="formBtn btn waves-effect waves-light" href="mailto:{{currentStudent.parentEmail}}"><i class="material-icons right">send</i>Email Parent/Guardian</a><br>
+
+<a id ="studentFormBtn" class="formBtn btn waves-effect waves-light" href="mailto:{{currentStudent.studentEmail}}"><i class="material-icons right">send</i>Email {{currentStudent.studentFirstName}}</a>
+
+<div class="divider"></div>
+
+    <h4><i class="classIcon medium material-icons left">school</i>{{currentStudent.studentFirstName}}'s Classes:</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Class:</th>
+            <th>Overall Grade</th>
+        </tr>
+    </thead>
+<tbody ng-repeat="class in classes">
+    <tr>
+    <td><a href="#!/classes/classStudentDash/{{class.id}}">{{class.name}}</a></td>
+    <td>{{class.grade}}% {{class.letterGrade}}</td>
+    </tr>
+</tbody>
+</table>
+<h4><i class="classIcon medium material-icons left">error</i>Discipline Incidents:</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Incident Report:</th>
+        </tr>
+    </thead>
+
+<tbody ng-repeat = "incident in incidents | orderBy: '-date'">
+    <tr>
+    <td><a href="#!/discipline/disciplineDash/{{incident.id}}">{{incident.className}} {{incident.infraction}}</a> {{incident.date}}</td>
+    </tr>
+</tbody>
+</table>

@@ -31,8 +31,29 @@ angular.module("TeacherHub").controller("studentDashCtrl", function($scope, $loc
             
             if(currentClass){
                 let overallGrade = gradeFactory.overall(currentClass.id, currentStudentId)
+                let letterGrade = null
+                if(overallGrade >= 0 && overallGrade <= 69){
+                    letterGrade = "F"
+                } else{
+                    if(overallGrade > 69 && overallGrade <= 74){
+                        letterGrade = "D"
+                    } else{
+                        if(overallGrade > 74 && overallGrade <= 84){
+                            letterGrade = "C"
+                        } else{
+                            if(overallGrade > 84 && overallGrade <= 92){
+                                letterGrade = "B"
+                            } else {
+                                if(overallGrade > 92) {
+                                    letterGrade = "A"
+                                }
+                            }
+                        }
+                    }
+                }
 
                 currentClass.grade = overallGrade
+                currentClass.letterGrade = letterGrade
                 $scope.classes.push(currentClass)
             }
         })}
