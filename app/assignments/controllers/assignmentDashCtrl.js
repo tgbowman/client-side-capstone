@@ -17,18 +17,19 @@ angular.module("TeacherHub").controller("assignmentDashCtrl", function($scope, a
             console.log(studentFactory.cachedStudents)
             let studentObj = studentFactory.cachedStudents.filter(student=>{
                 return student.id === gradeObject.studentId
-            })
-            
-            let newStudent = {
-                "firstName": studentObj[0].studentFirstName,
-                "lastName": studentObj[0].studentLastName,
-                "studentId": studentObj[0].id,
-                "grade": gradeObject.grade,
-                "classId": $scope.currentClass.id,
-                "gradeId": gradeObject.id
-            }
-            console.log(studentObj)
-            $scope.students.push(newStudent)
+            })[0]
+            if(studentObj){
+                console.log(studentObj)
+                let newStudent = {
+                    "firstName": studentObj.studentFirstName,
+                    "lastName": studentObj.studentLastName,
+                    "studentId": studentObj.id,
+                    "grade": gradeObject.grade,
+                    "classId": $scope.currentClass.id,
+                    "gradeId": gradeObject.id
+                }
+                console.log(studentObj)
+                $scope.students.push(newStudent)}
         })
         console.log($scope.students)
     }

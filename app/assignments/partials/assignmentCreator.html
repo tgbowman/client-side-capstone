@@ -1,16 +1,19 @@
-<h2>Add Assignment:</h2>
+<h3>Add Assignment:</h3>
 <form ng-submit="addAssignment()">
     <input type="text" ng-model="newAssignment.title" placeholder="Assignment Title">
     <textarea ng-model="newAssignment.description" placeholder="Assignment Description"></textarea>
     <label>Date Due:</label>
-    <input type="date" ng-model="newAssignment.dueDate">
+    <input type="text" class="datepicker" ng-model="newAssignment.dueDate">
     <label>Assign to:</label>
     <div ng-repeat="class in classes">
-        <label>
-            <input type="checkbox" ng-model="classes[$index].enabled">
+        <p>
+            <input type="checkbox" id="{{class}}"ng-model="classes[$index].enabled">
+        <label for="{{class}}">
             {{class.title}}
         </label>
+        </p>
     </div>
-    <button>Add Assignment</button>
+    
+    <button id="assBtn" class="waves-effect waves-light btn"><i class="material-icons left">assignment</i>Add Assignment</button>
 </form>
-<button ng-click="classList()">View Classes</button>
+<button class="waves-effect waves-light btn" ng-click="classList()"><i class="material-icons left">school</i>View Classes</button>

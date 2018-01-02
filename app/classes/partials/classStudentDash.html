@@ -1,10 +1,10 @@
-<h1>{{currentStudent.studentFirstName}} {{currentStudent.studentLastName}}</h1>
-<h2>Class: {{currentClass.name}}</h2>
-<h3>Assignments:</h3>
+<h3>{{currentStudent.studentFirstName}} {{currentStudent.studentLastName}}</h3>
+<h4>Class: {{currentClass.name}}</h4>
+<h5>Assignments:</h5>
 <ul ng-repeat="assignment in assignments">
-    <li><a href="#!/assignments/assignmentStudentDash/{{assignment.id}}">{{assignment.title}}</a><span>Grade: {{assignment.grade}}</span></li>
+    <li><a href="#!/assignments/assignmentStudentDash/{{assignment.id}}">{{assignment.title}}</a><span>Grade: {{assignment.grade}}%</span></li>
 </ul>
 
-<h3>Overall Grade: {{overallGrade}}</h3>
+<h5>Overall Grade: {{overallGrade}}%</h5>
 
 <div id="classStudentGrade_chart"></div>

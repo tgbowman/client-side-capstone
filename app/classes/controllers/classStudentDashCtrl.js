@@ -17,11 +17,11 @@ angular.module("TeacherHub").controller("classStudentDashCtrl", function($scope,
             let currentAssignment = assignmentFactory.assignmentCache.filter(assignment=> {return assignmentRel.assignmentId === assignment.id})[0]
 
             let gradeObj = gradeFactory.gradeCache.filter(gradeObj => {return gradeObj.studentId === $scope.currentStudent.id && gradeObj.assignmentClassId === assignmentRel.id})[0]
+            if(gradeObj){
+                currentAssignment.grade = gradeObj.grade
 
-            currentAssignment.grade = gradeObj.grade
-
-            $scope.assignments.push(currentAssignment)
-
+                $scope.assignments.push(currentAssignment)
+            }
         })
     }
 
@@ -29,18 +29,20 @@ angular.module("TeacherHub").controller("classStudentDashCtrl", function($scope,
         let gradeData = []
         let classAssignmentsArray = assignmentClassFactory.assignmentRelCache.filter(rel=>{return rel.classId === $scope.currentClass.id})
         classAssignmentsArray.forEach(assignment=>{
+           
+            let studentGrade = gradeFactory.gradeCache.filter(grade=>{return grade.assignmentClassId === assignment.id && grade.studentId === $scope.currentStudent.id})[0]
+            if(studentGrade && studentGrade.grade != "X"){
+                
+                let classAverage = gradeFactory.classAverageCache.filter(average=>{return average.assignmentClassId === assignment.id})[0].classAverage
 
-            let studentGrade = parseInt(gradeFactory.gradeCache.filter(grade=>{return grade.assignmentClassId === assignment.id && grade.studentId === $scope.currentStudent.id})[0].grade)
+                let assignmentObj = assignmentFactory.assignmentCache.filter(assignmentObj=>{return assignmentObj.id===assignment.assignmentId})[0]
 
-            let classAverage = gradeFactory.classAverageCache.filter(average=>{return average.assignmentClassId === assignment.id})[0].classAverage
+                let dataPoint = [assignmentObj.title, parseInt(studentGrade.grade), classAverage]
 
-            let assignmentObj = assignmentFactory.assignmentCache.filter(assignmentObj=>{return assignmentObj.id===assignment.assignmentId})[0]
-
-            let dataPoint = [assignmentObj.title, studentGrade, classAverage]
-
-            gradeData.push(dataPoint)
+                gradeData.push(dataPoint)}
+            
         })
-        
+        console.log(gradeData)
         var data = new google.visualization.DataTable()
         data.addColumn("string", "Assignment")
         data.addColumn("number", `${$scope.currentStudent.studentFirstName}`)
@@ -53,7 +55,7 @@ angular.module("TeacherHub").controller("classStudentDashCtrl", function($scope,
                 title: "Assignment"
             },
             vAxis: {
-                title: "Grade"
+                title: "Grade (%)"
             },
             animation: {
                 startup: true,

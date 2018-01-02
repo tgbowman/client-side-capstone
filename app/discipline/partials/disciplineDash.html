@@ -1,10 +1,12 @@
-<h1>Incident Report:</h1>
-<h2>Student: {{student.studentFirstName}} {{student.studentLastName}}</h2>
-<h2>Class: {{incidentClass.name}}</h2>
-<h2>Teacher: {{teacher.firstName}} {{teacher.lastName}}</h2>
-<h3>Date of Incident: {{incident.date}}</h3>
-<h3>Infaction: {{incident.infraction}}</h3>
-<h3>Infraction Details: {{incident.details}}</h3>
+<h3>Incident Report:</h3>
+<div class="divider"></div>
+<h5>Student: {{student.studentFirstName}} {{student.studentLastName}}</h5>
+<h5>Class: {{incidentClass.name}}</h5>
+<h5>Teacher: {{teacher.firstName}} {{teacher.lastName}}</h5>
+<div class="divider"></div>
+<h5>Date of Incident: {{incident.date}}</h5>
+<h5>Infaction: {{incident.infraction}}</h5>
+<h5>Infraction Details: {{incident.details}}</h5>
 
-<button ng-click="emailReport(student.parentEmail)">Email Report to Parent/Guardian</button>
+<button class = "btn waves-effect waves-light" ng-click="emailReport(student.parentEmail)"><i class="material-icons right">send</i>Email Report to Parent/Guardian</button>
 

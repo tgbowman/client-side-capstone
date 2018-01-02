@@ -73,6 +73,7 @@ angular
             "overall": {
                 value: function(classId, studentId) {
                     let totalPoints = 0
+                    let totalAssignments = 0
                     let assignments = assignmentClassFactory.assignmentRelCache.filter(rel=>{return rel.classId === classId})
                     let allStudentGrades = []
                     let studentClassGrades = []
@@ -83,9 +84,12 @@ angular
                         })
                     })
                     studentClassGrades.forEach(gradeObj=>{
-                        totalPoints+= parseInt(gradeObj.grade)
+                        if(gradeObj.grade != "X"){
+                            totalPoints+= parseInt(gradeObj.grade)
+                            totalAssignments++
+                        }
                     })
-                    let overallGrade = Math.round(totalPoints / assignments.length)
+                    let overallGrade = Math.round(totalPoints / totalAssignments)
                     if(isNaN(overallGrade)===true){
                         overallGrade = 0
                     }
@@ -103,10 +107,13 @@ angular
                             assignmentClassRel.forEach(assRel=>{
                                 let gradeObj = this.gradeCache.filter(gradeO=>{return gradeO.assignmentClassId === assRel.id })
                                 let total = 0
+                                let totalGrades = 0
                                 gradeObj.forEach(grade=>{
-                                    total += parseInt(grade.grade)
-                                }) 
-                                let classAverage = Math.round(total / gradeObj.length)
+                                    if(grade.grade != "X"){
+                                        total += parseInt(grade.grade)
+                                        totalGrades++
+                                    }}) 
+                                let classAverage = Math.round(total / totalGrades)
                                 let classAverageObj = {
                                     "classAverage": classAverage,
                                     "assignmentClassId": assRel.id

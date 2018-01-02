@@ -78,6 +78,7 @@ angular.module("TeacherHub").controller("addStudentCtrl", function($scope, $loca
                                 })
                                 if(inRelDatabase === false){
                                     classStudentFactory.add(newStudentClassRel).then(()=>{
+                                        Materialize.toast("Student Added!", 2000)
                                         console.log("Student Added to Class")
                                         clearFields()
                                         
@@ -107,6 +108,7 @@ angular.module("TeacherHub").controller("addStudentCtrl", function($scope, $loca
 
                                     if(inRelDatabase === false){
                                         classStudentFactory.add(newStudentClassRel).then(()=>{
+                                            Materialize.toast("Student Added!", 2000)
                                             console.log("Student Added to Class")})
                                         clearFields()
 

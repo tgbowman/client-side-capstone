@@ -25,7 +25,9 @@ angular.module("TeacherHub").controller("studentDashCtrl", function($scope, $loc
         if($scope.incidents.length > 0){
             $scope.incidents.forEach(incident=> {
                 let incidentClass = classFactory.classCache.filter(clazz=>{return clazz.id === incident.classId})[0]
-                incident.className= incidentClass.name
+                if(incidentClass){
+                    incident.className= incidentClass.name
+                }
             })
         }
     }

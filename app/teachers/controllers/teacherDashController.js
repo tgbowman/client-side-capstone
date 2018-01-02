@@ -5,10 +5,7 @@ angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, user
         $scope.updateCaches()
     })
 
-    $scope.addClass = function() {
-        $location.url("/classes/classCreator")
-    }
-
+    
     $scope.classList = function() {
         $location.url("/classes/classList")
     }

@@ -1,5 +1,8 @@
-<h2>{{firstName}}'s Classes:</h2>
+<h3>{{firstName}}'s Classes:</h3>
 <ul ng-repeat="class in classes">
-    <li><a href="#!/classes/classDash/{{class.id}}">{{class.name}}</a><button ng-click="deleteClass(class.id)">Delete Class</button></li>
+    <li><a class=" classBtn waves-effect waves-light btn"href="#!/classes/classDash/{{class.id}}"><i class="material-icons left">school</i>{{class.name}}</a>
     
 </ul>
+
+<button class = "dashButton waves-effect waves-light btn-large" id="addClass" ng-click= "addClass()"><i class="material-icons left">group_add
+</i>Add Class</button>

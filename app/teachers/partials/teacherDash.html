@@ -1,8 +1,28 @@
 <section>
-    <h1>Welcome {{firstName}}!</h1>
-    <button id="addClass" ng-click= "addClass()">Add Class</button>
-    <button id="classList" ng-click= "classList()">My Classes</button>
-    <button id="addAssignment" ng-click="assignmentForm()">Add Assignment</button>
-    <button id="addDiscipline" ng-click="disciplineForm()">Discipline Form</button>
-    <button id="studentList" ng-click="studentList()">Search Students</button>
+    <h3 class="center-align">Welcome {{firstName}}!</h3>
+    <div class= "row">
+    <!-- <div class= "#b2dfdb teal lighten-4
+     valign-wrapper dashDiv col s3 offset-s1 center-align" >
+        <button class = "dashButton waves-effect waves-light btn-large" id="addClass" ng-click= "addClass()"><i class="material-icons left">group_add
+        </i>Add Class</button>
+    </div> -->
+    <div class= "#b2dfdb teal lighten-4
+     valign-wrapper dashDiv col s4 offset-s1 center-align">
+        <button class = "dashButton waves-effect waves-light btn-large"id="classList" ng-click= "classList()"><i class="material-icons left">school</i>Classes</button>
+    </div>  
+    <div class= "#b2dfdb teal lighten-4
+     valign-wrapper dashDiv col s4 offset-s2 center-align">
+        <button class = "dashButton waves-effect waves-light btn-large" id="addAssignment" ng-click="assignmentForm()"><i class="material-icons left">assignment</i>Assignments</button>
+    </div>
+    </div>  
+    <div class="row">
+    <div class= "#b2dfdb teal lighten-4
+     valign-wrapper dashDiv col s4 offset-s1 center-align">
+        <button class = "dashButton waves-effect waves-light btn-large" id="addDiscipline" ng-click="disciplineForm()"><i class="material-icons left">error</i>Discipline Form</button>
+    </div>
+    <div class= "#b2dfdb teal lighten-4
+     valign-wrapper dashDiv col s4 offset-s2  center-align">
+        <button class = "dashButton waves-effect waves-light btn-large" id="studentList" ng-click="studentList()"><i class="material-icons left">people</i> Students</button>
+    </div>
+</div>
 </section>
