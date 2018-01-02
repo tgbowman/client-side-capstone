@@ -7,6 +7,27 @@ angular
                 enumerable:true,
                 writable: true
             },
+            "currentAssignment":{
+                value: null,
+                enumerable: true,
+                writable: true
+            },
+            "editMode": {
+                value: {
+                    "enabled": {
+                        value: false,
+                        enumerable: true,
+                        writable: true
+                    },
+                    "assId": {
+                        value: null,
+                        enumerable: true,
+                        writable: true
+                    }
+                },
+                enumerable: true,
+                writable: true
+            },
             "add":{
                 value: function(assignmentObj){
                     return firebase.auth().currentUser.getIdToken(true)
@@ -43,6 +64,19 @@ angular
                         .then(idToken => {
                             return $http
                                 .delete(`https://client-side-caps.firebaseio.com/assignments/${assignmentId}/.json?auth=${idToken}`)
+                                .then(r=>{
+                                    this.get()
+                                    return r
+                                })
+                        })
+                }
+            },
+            "update": {
+                value: function(assignmentId, assignmentObj){
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http
+                                .put(`https://client-side-caps.firebaseio.com/assignments/${assignmentId}/.json?auth=${idToken}`, assignmentObj)
                                 .then(r=>{
                                     this.get()
                                     return r

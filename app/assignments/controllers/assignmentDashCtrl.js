@@ -5,11 +5,19 @@ angular.module("TeacherHub").controller("assignmentDashCtrl", function($scope, a
     $scope.assignmentId = $routeParams.assignmentId
     $scope.myAssignment = null
 
+    $scope.currentAssignment = assignmentFactory.assignmentCache.filter(ass=> {
+        return $scope.assignmentId === ass.id
+    })[0]
+    console.log("The current assignment is:", $scope.currentAssignment)
+    assignmentFactory.currentAssignment = $scope.currentAssignment
+    assignmentFactory.editMode.assId = $scope.currentAssignment.id
+
     $scope.getStudents = function() {
         console.log($scope.currentClass.id)
         $scope.myAssignment = assignmentClassFactory.assignmentRelCache.filter(rel=>{return rel.classId === $scope.currentClass.id && rel.assignmentId === $scope.assignmentId })
         $scope.assignmentName = assignmentFactory.assignmentCache.filter(assignmentObj => {return assignmentObj.id === $scope.myAssignment[0].assignmentId})[0].title
         console.log($scope.myAssignment)
+        
         let gradeArray = gradeFactory.gradeCache.filter(grade => {return grade.assignmentClassId === $scope.myAssignment[0].id})
         console.log(gradeArray)
         gradeArray.forEach(gradeObject=>{
@@ -46,6 +54,13 @@ angular.module("TeacherHub").controller("assignmentDashCtrl", function($scope, a
                 console.log("grade updated successfully")
             })
     }
+
+    $scope.toEdit = function(){
+        assignmentFactory.editMode.enabled = true
+        $location.url("/assignments/assignmentCreator")
+    }
+    
+    
 
     $scope.backToClass = function() {
         $location.url(`/classes/classDash/${$scope.currentClass.id}`)

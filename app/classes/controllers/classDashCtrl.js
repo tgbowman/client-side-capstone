@@ -125,6 +125,8 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
     }
 
    
+
+   
     $(".dropdown-button").dropdown({
         inDuration: 300,
         outDuration: 225,
