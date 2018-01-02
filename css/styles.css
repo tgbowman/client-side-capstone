@@ -25,6 +25,10 @@
     margin-right: 10px;
   }
 
+  #studentFormBtn {
+    margin-bottom: 15px;
+  }
+
   .formBtn {
     margin-top: 10px;
   }
@@ -40,4 +44,21 @@
 
   #assignmentDiv {
     margin-bottom: 10px;
+  }
+
+  .gradeChart {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .incidentIcon {
+    margin-bottom: -15px;
+  }
+
+  .studentClassBtn {
+    margin-bottom: 10px;
+  }
+
+  .studentIcon {
+    margin-top: -11px;
   }

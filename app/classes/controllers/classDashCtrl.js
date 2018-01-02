@@ -30,7 +30,7 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
                         //calculate their overall grade for this class
                         let overallGrade = gradeFactory.overall($routeParams.classId, student[0].id)
                         let letterGrade = null
-                        if(overallGrade > 0 && overallGrade <= 69){
+                        if(overallGrade >= 0 && overallGrade <= 69){
                             letterGrade = "F"
                         } else{
                             if(overallGrade > 69 && overallGrade <= 74){

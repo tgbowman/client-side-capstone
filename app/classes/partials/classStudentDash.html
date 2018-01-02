@@ -1,10 +1,23 @@
 <h3>{{currentStudent.studentFirstName}} {{currentStudent.studentLastName}}</h3>
 <h4>Class: {{currentClass.name}}</h4>
+<a href="#!/students/studentDash/{{currentStudent.id}}" class="studentClassBtn btn waves-effect waves-light"><i class="material-icons left">undo</i>Student Profile</a>
+<div class="divider"></div>
 <h5>Assignments:</h5>
-<ul ng-repeat="assignment in assignments">
-    <li><a href="#!/assignments/assignmentStudentDash/{{assignment.id}}">{{assignment.title}}</a><span>Grade: {{assignment.grade}}%</span></li>
-</ul>
-
-<h5>Overall Grade: {{overallGrade}}%</h5>
-
-<div id="classStudentGrade_chart"></div>
+<table class="highlight">
+    <thead>
+        <tr>
+            <th>Assignment Name:</th>
+            <th>Grade:</th>
+        </tr>
+    </thead>
+<tbody ng-repeat="assignment in assignments">
+    <tr>
+        <td><a href="#!/assignments/assignmentStudentDash/{{assignment.id}}">{{assignment.title}}</a></td>
+        <td>{{assignment.grade}}% {{assignment.letterGrade}}</td>
+    </tr>
+       
+</tbody>
+</table>
+<h5>Overall Grade: {{overallGrade}}% {{letterGrade}}</h5>
+<div class="divider"></div>
+<div class="gradeChart" id="classStudentGrade_chart"></div>
