@@ -28,3 +28,16 @@
   .formBtn {
     margin-top: 10px;
   }
+
+  #menuBtn {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .classIcon {
+    margin-top: -15px;
+  }
+
+  #assignmentDiv {
+    margin-bottom: 10px;
+  }

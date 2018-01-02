@@ -1,21 +1,30 @@
 <h3>{{currentClass.name}} <a href="#" data-beloworigin="true" data-activates="classDropDown" class="dropdown-button "><i class="small material-icons">more_vert</i></a></h3>
+
+<div class="divider"></div>
+
     <ul id="classDropDown" class="dropdown-content">
         <li><a href="#!/students/addStudent"><i class="material-icons left">group_add</i>Add Students</a></li>
         <li><a ng-click="deleteClass(currentClass.id)"><i class="material-icons left">delete</i>Delete Class</a></li>
     </ul>
 
-<h4>Students: <a href="#" data-beloworigin="true" data-activates="studentDropDown" class="dropdown-button "><i class="small material-icons">more_vert</i></a> <button class="waves-effect waves-light btn" ng-if="studentDeleteMode === true" ng-click="studentDeleteModeToggle()">Cancel</button></h4> 
+<h4><i class="classIcon medium material-icons left">people</i>Students: <a href="#" data-beloworigin="true" data-activates="studentDropDown" class="dropdown-button "><i class="small material-icons">more_vert</i></a> <button class="waves-effect waves-light btn" ng-if="studentDeleteMode === true" ng-click="studentDeleteModeToggle()">Cancel</button></h4> 
+
     <ul id="studentDropDown" class="dropdown-content">
         <li><a ng-click="studentDeleteModeToggle()">Remove Students</a></li>
     </ul>
+
 <ul ng-repeat = "student in myStudents">
     <li>
         <button ng-if="studentDeleteMode === true" class="waves-effect waves-light btn #ef5350 red lighten-1" ng-click="deleteStudentFromClass(student)"><i class="material-icons">delete</i></button>
         <a href="#!/students/studentDash/{{student.id}}">{{student.studentFirstName}} {{student.studentLastName}}</a>
-        Overall Grade: {{student.overallGrade}}
+        Overall Grade: {{student.overallGrade}} {{student.letterGrade}}
     </li>
 </ul>
-<h4>Assignments: <a href="#" data-beloworigin="true" data-activates="assignmentDropDown" class="dropdown-button "><i class="small material-icons">more_vert</i></a> <button class="waves-effect waves-light btn" ng-if="assignmentDeleteMode === true" ng-click="assignmentDeleteModeToggle()">Cancel</button></h4>
+
+<div id="assignmentDiv" class="divider"></div>
+
+<h4><i class="classIcon medium material-icons left">assignment</i>Assignments: <a href="#" data-beloworigin="true" data-activates="assignmentDropDown" class="dropdown-button "><i class="small material-icons">more_vert</i></a> <button class="waves-effect waves-light btn" ng-if="assignmentDeleteMode === true" ng-click="assignmentDeleteModeToggle()">Cancel</button></h4>
+
     <ul id="assignmentDropDown" class="dropdown-content">
         <li><a ng-click="assignmentDeleteModeToggle()">Delete Assignments</a></li>
     </ul>

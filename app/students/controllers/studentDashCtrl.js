@@ -2,7 +2,23 @@ angular.module("TeacherHub").controller("studentDashCtrl", function($scope, $loc
     let currentStudentId = $routeParams.studentId
     $scope.currentStudent = studentFactory.cachedStudents.filter(student=>{return student.id === currentStudentId})[0]
     
-    
+    if($scope.currentStudent.profilePicURL){
+        let profilePicRef = firebase.storage().refFromURL("gs://client-side-caps.appspot.com/profile_pics/"+$scope.currentStudent.profilePicURL)
+        $scope.profilePic = profilePicRef.getDownloadURL().then(url=>{
+            let profilePicIMG = document.getElementById("studentProfilePic")
+            profilePicIMG.src= url
+        })
+    } else {
+        let profilePicRef = firebase.storage().refFromURL("gs://client-side-caps.appspot.com/profile_pics/default.png")
+        $scope.profilePic = profilePicRef.getDownloadURL().then(url=>{
+            let profilePicIMG = document.getElementById("studentProfilePic")
+            profilePicIMG.src= url
+        })
+    }
+
+
+
+
     let getClasses = function() {
         studentFactory.currentStudent = $scope.currentStudent
         
@@ -14,10 +30,10 @@ angular.module("TeacherHub").controller("studentDashCtrl", function($scope, $loc
             let currentClass = classFactory.classCache.filter(clazz =>{return clazz.id === classRel.classId})[0]
             
             if(currentClass){
-            let overallGrade = gradeFactory.overall(currentClass.id, currentStudentId)
+                let overallGrade = gradeFactory.overall(currentClass.id, currentStudentId)
 
-            currentClass.grade = overallGrade
-            $scope.classes.push(currentClass)
+                currentClass.grade = overallGrade
+                $scope.classes.push(currentClass)
             }
         })}
 

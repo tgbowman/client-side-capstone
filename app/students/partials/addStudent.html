@@ -21,6 +21,10 @@
             <input ng-model="newStudent.parentLastName" type="text" placeholder="Parent/Guardian Last Name"><br>
             <input ng-model="newStudent.parentEmail" type="text" placeholder="Parent/Guardian Email">
     </fieldset>
+    <fieldset>
+        <label>Upload Profile Picture</label>
+        <input value= "upload" id="profilePic" type="file"> <i ng-if="newStudent.profilePicUrl != null" class="material-icons">check</i>
+    </fieldset>
     <button class="formBtn waves-effect waves-light btn"><i class="material-icons left">person_add</i>Add Student</button>
 </form>
 <h3>Add an existing student:</h3>

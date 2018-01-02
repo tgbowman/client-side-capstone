@@ -1,6 +1,18 @@
 angular.module("TeacherHub").controller("addStudentCtrl", function($scope, $location, $routeParams, classFactory, studentFactory, classStudentFactory, $timeout){
     $scope.currentClass = classFactory.currentClass
     $scope.students = null
+    $scope.newStudent = {}
+    
+    let profilePic = document.getElementById("profilePic")
+    profilePic.addEventListener("change", function(e){
+        let file = e.target.files[0]
+        let picStorageRef = firebase.storage().ref("profile_pics/" + file.name)
+        picStorageRef.put(file).then(r=> {console.log(r)
+            $scope.newStudent.profilePicURL = r.metadata.name
+        })
+
+    })
+    
     //function that executes on page load to get all students from the students DB.
     studentFactory.getStudents()
         .then(studentsList => {
@@ -51,6 +63,7 @@ angular.module("TeacherHub").controller("addStudentCtrl", function($scope, $loca
                 
                 //if there are no students in the database add them and create the classStudent relationship
                 if(studentsArray.length===0){
+                    
                     studentFactory.addStudent($scope.newStudent).then(returnData=>{
                         console.log(returnData)
                         newStudentClassRel.classId = currentClass.id 

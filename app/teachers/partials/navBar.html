@@ -1,8 +1,16 @@
 <div class = "nav-wrapper #b2dfdb teal lighten-4
 "
 ng-controller="AuthCtrl">
-    <h2 class= "brand-logo"><a href="#!teachers/teacherDash">TeacherHUD</a></h2>
+    <h2 class= "brand-logo"><a href="#!teachers/teacherDash">TeacherHUB</a></h2>
+   
+    <ul class="dropdown-content" id="navDropdown">
+        <li><a href="#!/classes/classList">Classes</a></li>
+        <li><a href="#!/assignments/assignmentCreator">Assignments</a></li>
+        <li><a href="#!/discipline/disciplineForm">Discipline</a></li>
+        <li><a href="#!/students/studentList">Students</a></li>
+    </ul>
     <ul class= "right hide-on-small-and-down">
+        <li> <a id="menuBtn" class= "dropdown-button" href="#" data-activates="navDropdown"><i class="material-icons right">arrow_drop_down</i>Menu</a></li>
         <li><a href="#" ng-click="logoutUser()">Logout</a></li>
     </ul>
 </div>
