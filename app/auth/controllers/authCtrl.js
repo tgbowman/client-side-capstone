@@ -6,7 +6,7 @@ app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location)
     $scope.logoutUser = function(){
         AuthFactory.logout()
         $scope.loggedIn = false
-        $location.url('/auth')
+        $location.url("/auth")
     }
 
     $scope.loginUser = function (credentials) {
@@ -23,7 +23,9 @@ app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location)
         $location.url("/auth/register")
     
     }
-  
+    $(document).ready(function(){
+        $(".dropdown-button").dropdown({"hover":true})
+    })
     $scope.registerUser = function(registerNewUser) {
         AuthFactory.registerWithEmail(registerNewUser).then(function(didRegister) {
             console.log(didRegister)

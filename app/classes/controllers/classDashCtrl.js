@@ -7,6 +7,8 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
     $scope.currentAssRel = null
     $scope.myStudents = []
     $scope.myAssignments = []
+
+    
     
     $scope.test = function(){alert("you clicked me")}
 
@@ -27,7 +29,28 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
                         let student = studentFactory.cachedStudents.filter(studentObj => {return studentObj.id===relationship.studentId})
                         //calculate their overall grade for this class
                         let overallGrade = gradeFactory.overall($routeParams.classId, student[0].id)
+                        let letterGrade = null
+                        if(overallGrade > 0 && overallGrade <= 69){
+                            letterGrade = "F"
+                        } else{
+                            if(overallGrade > 69 && overallGrade <= 74){
+                                letterGrade = "D"
+                            } else{
+                                if(overallGrade > 74 && overallGrade <= 84){
+                                    letterGrade = "C"
+                                } else{
+                                    if(overallGrade > 84 && overallGrade <= 92){
+                                        letterGrade = "B"
+                                    } else {
+                                        if(overallGrade > 92) {
+                                            letterGrade = "A"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         student[0].overallGrade = overallGrade
+                        student[0].letterGrade = letterGrade
                         $scope.myStudents.push(student[0])
                     })
                     console.log($scope.myStudents)

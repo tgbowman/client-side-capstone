@@ -20,8 +20,10 @@ angular
                                 .post(`https://client-side-caps.firebaseio.com/students/.json?auth=${idToken}`, studentObject
                                 )
                         })
-                        .then(
+                        .then(r=>{
                             this.getStudents()
+                            return r
+                        }
                         )
                             
                 }
