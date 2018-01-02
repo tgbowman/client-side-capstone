@@ -1,0 +1,30 @@
+.deleteBtn{
+    margin-top: 5px;
+}
+
+.dashButton {
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+  
+  .classBtn {
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+  
+  .dashDiv {
+    height: 30%;
+  }
+
+  #assBtn {
+      margin-top: 10px;
+  }
+
+  .studentAddBtn {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .formBtn {
+    margin-top: 10px;
+  }

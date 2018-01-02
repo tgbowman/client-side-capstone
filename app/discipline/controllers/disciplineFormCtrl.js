@@ -7,14 +7,20 @@ angular.module("TeacherHub").controller("disciplineFormCtrl", function($scope, s
     $scope.selectedClass = null
 
     $scope.getStudents = function(){
+
         $scope.students = []
         let classStudentRel = classStudentFactory.relCache.filter(classRel => {return classRel.classId === $scope.newDiscipline.classId})
         classStudentRel.forEach(studentRel => {
             let student = studentFactory.cachedStudents.filter(studentObj => {return studentRel.studentId === studentObj.id})[0]
             $scope.students.push(student)
         })
+        $('select').material_select()
+        console.log($scope.students)
     }
 
+    $scope.getSelectData = function(){
+        $('select').material_select()
+    }
     $scope.addDiscipline = function(){
         $scope.newDiscipline.teacherId = $scope.currentUser.id
 
@@ -31,5 +37,18 @@ angular.module("TeacherHub").controller("disciplineFormCtrl", function($scope, s
         "Under the Influence of a Prohibited Substance",
         "Inappropriate Classroom Behavior"
     ]
+
+    $(".datepicker").pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: "Today",
+        clear: "Clear",
+        close: "Ok",
+        closeOnSelect: false // Close upon selecting a date,
+    })
+    $(document).ready(function() {
+        $("select").material_select()
+    })
+          
 })
 

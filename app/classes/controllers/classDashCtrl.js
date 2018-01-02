@@ -1,12 +1,19 @@
 angular.module("TeacherHub").controller("classDashCtrl", function($scope, $location, $routeParams, classFactory, classStudentFactory, studentFactory, assignmentClassFactory, assignmentFactory, gradeFactory){
+
+    $scope.studentDeleteMode = false
+    $scope.assignmentDeleteMode = false
+
     $scope.currentClassRel = null
     $scope.currentAssRel = null
     $scope.myStudents = []
     $scope.myAssignments = []
+    
+    $scope.test = function(){alert("you clicked me")}
 
     $scope.getData = function (){
         $scope.myStudents = []
         $scope.myAssignments = []
+        //get the currentClass from firebase
         classFactory.single($routeParams.classId).then(returnedClass => {
             $scope.currentClass = returnedClass
             classStudentFactory.get()
@@ -25,6 +32,7 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
                     })
                     console.log($scope.myStudents)
                 })
+                //get all class assignments from firebase
             let assRelArray = assignmentClassFactory.assignmentRelCache
             console.log(assRelArray)
             let assRel = assRelArray.filter(r=>{
@@ -32,6 +40,7 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
             })
             $scope.currentAssRel = assRel
             console.log(assRel)
+            //filter through the assignments database and push each assignment object into the myAssignments array
             assRel.forEach(relation => {
                 let assignment = assignmentFactory.assignmentCache.filter(assignmentObj => {
                     return assignmentObj.id === relation.assignmentId
@@ -39,12 +48,45 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
                 $scope.myAssignments.push(assignment[0])
             })
             console.log($scope.myAssignments)
+            console.log($scope.currentClass)
         }) 
     }  
        
 
     $scope.getData()
+   
+    $scope.deleteClass = function(classId){
+        classFactory.deleteClass(classId)
+            .then(r=>{
+                $timeout($scope.classes = classFactory.classCache, 500)
+                console.log("class successfully deleted")
+                let relArray = classStudentFactory.relCache
+                if(relArray.length > 0){
+                    relArray.forEach(rel=>{
+                        if(rel.classId === classId){
+                            classStudentFactory.deleteRel(rel.classStudentId)
+                                .then((returnData)=>{
+                                    let classAssignmentArray = assignmentClassFactory.assignmentRelCache.filter(assRel=>{})
+                                    gradeFactory.delete()
+                                    console.log("class StudentRelationship Deleted")
+                                })
+                        }
+                    })
+                }
+            })
+    }
 
+    $scope.studentDeleteModeToggle= function(){
+        if($scope.studentDeleteMode === false){
+            $scope.studentDeleteMode = true}
+        else {$scope.studentDeleteMode = false}
+    }
+    $scope.assignmentDeleteModeToggle = function(){
+        if($scope.assignmentDeleteMode === false){
+            $scope.assignmentDeleteMode = true
+        } else {$scope.assignmentDeleteMode = false}
+    }
+    //function to delete a student from the class
     $scope.deleteStudentFromClass = function(studentObj){
         console.log($scope.myStudents)
         let relToDelete =  $scope.currentClassRel.filter(rel=>{return rel.studentId===studentObj.id})
@@ -52,8 +94,11 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
         classStudentFactory.deleteRel(relToDelete[0].classStudentId).then(()=>{
             $scope.getData()
         })
+
+        $scope.deleteMode = false
     }
 
+    //function to delete an assignment from the class
     $scope.deleteAssignmentFromClass = function(assignmentObj){
         let assToDelete = $scope.currentAssRel.filter(rel=>{return rel.assignmentId === assignmentObj.id})[0]
         assignmentClassFactory.delete(assToDelete.id).then(()=>{
@@ -61,8 +106,10 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
             gradesToDelete.forEach(grade=>{
                 gradeFactory.delete(grade.id).then(r=>console.log("student grade deleted successfully"))
             })
-            let stillInAssignments = assignmentFactory.assignmentCache.filter(assignment => {return assignment.assignmentId === assignmentObj.id})
+            //filters throught the assignment/Class Database to check if the assignmet is still being used in another class
+            let stillInAssignments = assignmentClassFactory.assignmentRelCache.filter(assignment => {return assignment.assignmentId === assignmentObj.id})
             console.log(stillInAssignments)
+            //if it isn't the assignment is deleted from the assignment array
             if(stillInAssignments.length === 0){
                 console.log(assignmentObj)
                 assignmentFactory.delete(assignmentObj.id)
@@ -77,8 +124,18 @@ angular.module("TeacherHub").controller("classDashCtrl", function($scope, $locat
         $location.url("/students/addStudent")
     }
 
-    $scope.getAssignments = function() {
-        
+   
+    $(".dropdown-button").dropdown({
+        inDuration: 300,
+        outDuration: 225,
+        constrainWidth: false, // Does not change width of dropdown to that of the activator
+        hover: false, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: "left", // Displays dropdown with edge aligned to the left of button
+        stopPropagation: false // Stops event propagation
     }
+    )
+    
 
 })

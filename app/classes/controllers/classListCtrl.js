@@ -3,6 +3,9 @@ angular.module("TeacherHub").controller("classListCtrl", function($scope, $locat
     $scope.firstName = currentUser.firstName
     $scope.classes = classFactory.classCache
 
+    $scope.addClass = function() {
+        $location.url("/classes/classCreator")
+    }
 
     $scope.deleteClass = function(classId){
         classFactory.deleteClass(classId)
@@ -14,7 +17,9 @@ angular.module("TeacherHub").controller("classListCtrl", function($scope, $locat
                     relArray.forEach(rel=>{
                         if(rel.classId === classId){
                             classStudentFactory.deleteRel(rel.classStudentId)
-                                .then(()=>{
+                                .then((returnData)=>{
+                                    let classAssignmentArray = assignmentClassFactory.assignmentRelCache.filter(assRel=>{})
+                                    gradeFactory.delete()
                                     console.log("class StudentRelationship Deleted")
                                 })
                         }

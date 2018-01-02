@@ -41,25 +41,4 @@ angular.module("TeacherHub").controller("assignmentStudentDashCtrl", function($s
         chart.draw(data, options)
     }
 
-
-    //     let data = new google.visualization.arrayToDataTable(
-    //         ["Name", "Grade"],
-    //         ["Class Average", classAverage.classAverage],
-    //         [`${studentFactory.currentStudent.studentFirstName}'s Grade`, studentGrade]
-    //     )
-    //     var options = {
-    //         "width":800,
-    //         "height":400,
-    //         "bars": "vertical",
-    //         "axes": {
-    //             "y": {
-    //                 0: {"side": "left", "label": "Grade"}
-    //             }
-    //         }
-    //     }
-
-    //     var chart = new google.visualization.BarChart(document.getElementById("chart_div"))
-    //     chart.draw(data, options)
-    // }
-
 })

@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="css/styles.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-    google.charts.load("current", {packages: ["corechart", "bar"]})
-    google.charts.setOnLoadCallback(drawStudentAssignmentChart)</script>
     <title>TeacherHUD</title>
 </head>
-<body ng-app = "TeacherHub">
+<body class= "#fafafa grey lighten-5" ng-app = "TeacherHub">
     <nav ng-include="'app/teachers/partials/navBar.html'"></nav>
 
-    <div ng-view></div>
+    <div class = "container" id="mainView" ng-view></div>
     
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="./app/materialize.js"></script>
 
     <script src="./lib/node_modules/angular/angular.min.js"></script>
     <script src="./lib/node_modules/firebase/firebase.js"></script>

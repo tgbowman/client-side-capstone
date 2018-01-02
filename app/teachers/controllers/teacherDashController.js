@@ -5,20 +5,18 @@ angular.module("TeacherHub").controller("teacherDashCtrl", function($scope, user
         $scope.updateCaches()
     })
 
-    $scope.addClass = function() {
-        $location.url("/classes/classCreator")
-    }
-
+    
     $scope.classList = function() {
         $location.url("/classes/classList")
     }
     $scope.updateCaches = function () {
-        classFactory.getClasses()
+        classFactory.getClasses().then(r=>{
+            gradeFactory.get()
+        })
         studentFactory.getStudents()
         classStudentFactory.get()
         assignmentFactory.get()
         assignmentClassFactory.get()
-        gradeFactory.get()
         disciplineFactory.get()
         userFactory.getAll()
     }

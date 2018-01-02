@@ -1,5 +1,7 @@
-<h1>{{assignmentName}}</h1>
-<button ng-click = "backToClass()">Class Dashboard</button>
+<h3>{{assignmentName}}</h3>
+<button class="waves-effect waves-light btn" ng-click = "backToClass()"><i class="material-icons left">undo</i>Class Dashboard</button>
+<h5>Enter student grades below.</h5>
+<h5>Enter an X if an assignment is not to be included in a student's overall grade.</h5>
 <ul ng-repeat = "student in students">
     <li><a href="#">{{student.firstName}} {{student.lastName}}</a> <span>Grade:<input ng-model="student.grade" type="text" ng-keyup="updateGrade(student)" ></span></li>
 </ul>
