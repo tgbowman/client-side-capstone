@@ -1,6 +1,8 @@
-<h3>Discipline Form:</h3>
-<form ng-submit="addDiscipline()">
-    <div class="input-field">
+<h3><i class="discIcon medium material-icons left">error</i>Discipline Form:</h3>
+<div class="divider"></div>
+<br>
+<form  ng-submit="addDiscipline()">
+    <div id="discForm" class="input-field">
         <select ng-model= "newDiscipline.classId" ng-change = "getStudents()">
             <option ng-repeat = "class in classes" value="{{class.id}}">{{class.name}}</option>
         </select>
