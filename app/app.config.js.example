@@ -5,3 +5,7 @@ app.constant("FIREBASE_CONFIG", {
     storageBucket: "",
     messagingSenderId: ""
 })
+
+app.run(function (FIREBASE_CONFIG) {
+    firebase.initializeApp(FIREBASE_CONFIG)
+})
