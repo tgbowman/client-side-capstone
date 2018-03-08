@@ -1,9 +1,9 @@
-app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location) {
+app.controller("AuthCtrl", function ($scope, AuthFactory, userFactory, $location) {
     $scope.auth = {}
 
     $scope.loggedIn = false
 
-    $scope.logoutUser = function(){
+    $scope.logoutUser = function () {
         AuthFactory.logout()
         $scope.loggedIn = false
         $location.url("/auth")
@@ -19,15 +19,15 @@ app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location)
         })
     }
 
-    $scope.registerPage= function() {
+    $scope.registerPage = function () {
         $location.url("/auth/register")
-    
+
     }
-    $(document).ready(function(){
-        $(".dropdown-button").dropdown({"hover":true})
+    $(document).ready(function () {
+        $(".dropdown-button").dropdown({ "hover": true })
     })
-    $scope.registerUser = function(registerNewUser) {
-        AuthFactory.registerWithEmail(registerNewUser).then(function(didRegister) {
+    $scope.registerUser = function (registerNewUser) {
+        AuthFactory.registerWithEmail(registerNewUser).then(function (didRegister) {
             console.log(didRegister)
             $scope.newUser = {
                 "firstName": $scope.userFirstName,
@@ -37,10 +37,10 @@ app.controller("AuthCtrl", function($scope, AuthFactory, userFactory, $location)
             userFactory.createNewUser($scope.newUser).then(() => {
                 console.log("You have created a new user")
                 $scope.loggedIn = true
-                
+
             })
             $location.url("/teachers/teacherDash")
-    
+
 
         })
     }

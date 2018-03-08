@@ -1,30 +1,30 @@
-angular.module("TeacherHub").controller("disciplineFormCtrl", function($scope, studentFactory, disciplineFactory, classFactory, userFactory, classStudentFactory, $location){
+angular.module("TeacherHub").controller("disciplineFormCtrl", function ($scope, studentFactory, disciplineFactory, classFactory, userFactory, classStudentFactory, $location) {
 
     $scope.newDiscipline = {}
     $scope.currentUser = userFactory.currentUser
-    $scope.classes = classFactory.classCache.filter(clazz=> {return clazz.teacherId === $scope.currentUser.id})
+    $scope.classes = classFactory.classCache.filter(clazz => { return clazz.teacherId === $scope.currentUser.id })
     $scope.students = []
     $scope.selectedClass = null
 
-    $scope.getStudents = function(){
+    $scope.getStudents = function () {
 
         $scope.students = []
-        let classStudentRel = classStudentFactory.relCache.filter(classRel => {return classRel.classId === $scope.newDiscipline.classId})
+        let classStudentRel = classStudentFactory.relCache.filter(classRel => { return classRel.classId === $scope.newDiscipline.classId })
         classStudentRel.forEach(studentRel => {
-            let student = studentFactory.cachedStudents.filter(studentObj => {return studentRel.studentId === studentObj.id})[0]
+            let student = studentFactory.cachedStudents.filter(studentObj => { return studentRel.studentId === studentObj.id })[0]
             $scope.students.push(student)
         })
         $('select').material_select()
         console.log($scope.students)
     }
 
-    $scope.getSelectData = function(){
+    $scope.getSelectData = function () {
         $('select').material_select()
     }
-    $scope.addDiscipline = function(){
+    $scope.addDiscipline = function () {
         $scope.newDiscipline.teacherId = $scope.currentUser.id
 
-        disciplineFactory.add($scope.newDiscipline).then(r=>
+        disciplineFactory.add($scope.newDiscipline).then(r =>
             $location.url(`/discipline/disciplineDash/${r.data.name}`)
         )
     }
@@ -46,9 +46,9 @@ angular.module("TeacherHub").controller("disciplineFormCtrl", function($scope, s
         close: "Ok",
         closeOnSelect: false // Close upon selecting a date,
     })
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("select").material_select()
     })
-          
+
 })
 

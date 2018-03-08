@@ -1,13 +1,18 @@
 <h3>{{currentStudent.studentFirstName}} {{currentStudent.studentLastName}}</h3>
-<img id="studentProfilePic" height="250"><br>
+<img id="studentProfilePic" height="250">
+<br>
 
-<a class="formBtn btn waves-effect waves-light" href="mailto:{{currentStudent.parentEmail}}"><i class="material-icons right">send</i>Email Parent/Guardian</a><br>
+<a class="formBtn btn waves-effect waves-light" href="mailto:{{currentStudent.parentEmail}}">
+    <i class="material-icons right">send</i>Email Parent/Guardian</a>
+<br>
 
-<a id ="studentFormBtn" class="formBtn btn waves-effect waves-light" href="mailto:{{currentStudent.studentEmail}}"><i class="material-icons right">send</i>Email {{currentStudent.studentFirstName}}</a>
+<a id="studentFormBtn" class="formBtn btn waves-effect waves-light" href="mailto:{{currentStudent.studentEmail}}">
+    <i class="material-icons right">send</i>Email {{currentStudent.studentFirstName}}</a>
 
 <div class="divider"></div>
 
-    <h4><i class="classIcon medium material-icons left">school</i>{{currentStudent.studentFirstName}}'s Classes:</h4>
+<h4>
+    <i class="classIcon medium material-icons left">school</i>{{currentStudent.studentFirstName}}'s Classes:</h4>
 <table>
     <thead>
         <tr>
@@ -15,14 +20,17 @@
             <th>Overall Grade</th>
         </tr>
     </thead>
-<tbody ng-repeat="class in classes">
-    <tr>
-    <td><a href="#!/classes/classStudentDash/{{class.id}}">{{class.name}}</a></td>
-    <td>{{class.grade}}% {{class.letterGrade}}</td>
-    </tr>
-</tbody>
+    <tbody ng-repeat="class in classes">
+        <tr>
+            <td>
+                <a href="#!/classes/classStudentDash/{{class.id}}">{{class.name}}</a>
+            </td>
+            <td>{{class.grade}}% {{class.letterGrade}}</td>
+        </tr>
+    </tbody>
 </table>
-<h4><i class="classIcon medium material-icons left">error</i>Discipline Incidents:</h4>
+<h4>
+    <i class="classIcon medium material-icons left">error</i>Discipline Incidents:</h4>
 <table>
     <thead>
         <tr>
@@ -30,9 +38,10 @@
         </tr>
     </thead>
 
-<tbody ng-repeat = "incident in incidents | orderBy: '-date'">
-    <tr>
-    <td><a href="#!/discipline/disciplineDash/{{incident.id}}">{{incident.className}} {{incident.infraction}}</a> {{incident.date}}</td>
-    </tr>
-</tbody>
+    <tbody ng-repeat="incident in incidents | orderBy: '-date'">
+        <tr>
+            <td>
+                <a href="#!/discipline/disciplineDash/{{incident.id}}">{{incident.className}} {{incident.infraction}}</a> {{incident.date}}</td>
+        </tr>
+    </tbody>
 </table>

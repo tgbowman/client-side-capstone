@@ -1,14 +1,14 @@
 angular
     .module("TeacherHub")
-    .factory("classStudentFactory", function($http){
+    .factory("classStudentFactory", function ($http) {
         return Object.create(null, {
-            "relCache":{
+            "relCache": {
                 value: null,
                 enumerable: true,
                 writable: true
             },
-            "add":{
-                value: function(studentClassObj){
+            "add": {
+                value: function (studentClassObj) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
@@ -17,13 +17,13 @@ angular
                 }
             },
             "get": {
-                value: function(){
+                value: function () {
                     return $http
                         .get("https://client-side-caps.firebaseio.com/classStudent/.json")
                         .then(relationshipData => {
                             let relationshipArray = []
-                            for(let key in relationshipData.data){
-                                relationshipData.data[key].classStudentId= key
+                            for (let key in relationshipData.data) {
+                                relationshipData.data[key].classStudentId = key
                                 relationshipArray.push(relationshipData.data[key])
                             }
                             this.relCache = relationshipArray
@@ -33,7 +33,7 @@ angular
                 }
             },
             "deleteRel": {
-                value: function(relId){
+                value: function (relId) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http

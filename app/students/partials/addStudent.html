@@ -1,35 +1,55 @@
-<h3><i class="studentIcon medium material-icons left">person_add</i>Add Student to <a href="#!/classes/classDash/{{currentClass.id}}">{{currentClass.name}}</a>:</h3>
+<h3>
+    <i class="studentIcon medium material-icons left">person_add</i>Add Student to
+    <a href="#!/classes/classDash/{{currentClass.id}}">{{currentClass.name}}</a>:</h3>
 <h4>Add a new student:</h4>
 <form ng-submit="addStudent()">
     <fieldset>
-        <label>Student Information:</label><br>
-            <input ng-model="newStudent.studentFirstName" type="text" placeholder="Student First Name"><br>
-            <input ng-model="newStudent.studentLastName" type="text" placeholder="Student Last Name"><br>
-            <input type="radio" id ="male" ng-model = "newStudent.gender" value = "male" name = "Male">
+        <label>Student Information:</label>
+        <br>
+        <input ng-model="newStudent.studentFirstName" type="text" placeholder="Student First Name">
+        <br>
+        <input ng-model="newStudent.studentLastName" type="text" placeholder="Student Last Name">
+        <br>
+        <input type="radio" id="male" ng-model="newStudent.gender" value="male" name="Male">
         <label for="male">
             Male
         </label>
-        <input type="radio" id = "female" ng-model = "newStudent.gender" value = "female" name ="female">
+        <input type="radio" id="female" ng-model="newStudent.gender" value="female" name="female">
         <label for="female">
             Female
-        </label><br>
-        <input ng-model = "newStudent.studentEmail" type="text" placeholder="Student Email">
+        </label>
+        <br>
+        <input ng-model="newStudent.studentEmail" type="text" placeholder="Student Email">
     </fieldset>
     <fieldset>
-        <label>Parent/Guardian Information:</label><br>
-            <input ng-model = "newStudent.parentFirstName" type="text" placeholder="Parent/Guardian First Name"><br>
-            <input ng-model="newStudent.parentLastName" type="text" placeholder="Parent/Guardian Last Name"><br>
-            <input ng-model="newStudent.parentEmail" type="text" placeholder="Parent/Guardian Email">
+        <label>Parent/Guardian Information:</label>
+        <br>
+        <input ng-model="newStudent.parentFirstName" type="text" placeholder="Parent/Guardian First Name">
+        <br>
+        <input ng-model="newStudent.parentLastName" type="text" placeholder="Parent/Guardian Last Name">
+        <br>
+        <input ng-model="newStudent.parentEmail" type="text" placeholder="Parent/Guardian Email">
     </fieldset>
     <fieldset>
         <label>Upload Profile Picture</label>
-        <input value= "upload" id="profilePic" type="file"> <i ng-if="newStudent.profilePicUrl != null" class="material-icons">check</i>
+        <input value="upload" id="profilePic" type="file">
+        <i ng-if="newStudent.profilePicUrl != null" class="material-icons">check</i>
     </fieldset>
-    <button class="formBtn waves-effect waves-light btn"><i class="material-icons left">person_add</i>Add Student</button>
+    <button class="formBtn waves-effect waves-light btn">
+        <i class="material-icons left">person_add</i>Add Student</button>
 </form>
 <h3>Add an existing student:</h3>
-<input type="text" ng-model = "studentSearch" placeholder="Search Students">
+<input type="text" ng-model="studentSearch" placeholder="Search Students">
 <ul ng-repeat="student in students | filter: studentSearch">
-    <li><a href="#">{{student.studentFirstName}} {{student.studentLastName}}</a><button class="studentAddBtn waves-effect waves-light btn" ng-click="addExistingStudent(student.id)"><i class="material-icons ">person_add
-    </i></button><button class= "studentDeleteBtn waves-effect waves-light btn #ef5350 red lighten-1" ng-click="delete(student.id)"><i class="material-icons ">delete</i></button></li> 
+    <li>
+        <a href="#">{{student.studentFirstName}} {{student.studentLastName}}</a>
+        <button class="studentAddBtn waves-effect waves-light btn"
+            ng-click="addExistingStudent(student.id)">
+            <i class="material-icons ">person_add
+            </i>
+        </button>
+        <button class="studentDeleteBtn waves-effect waves-light btn #ef5350 red lighten-1" ng-click="delete(student.id)">
+            <i class="material-icons ">delete</i>
+        </button>
+    </li>
 </ul>

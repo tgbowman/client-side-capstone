@@ -1,9 +1,12 @@
 <h3>{{firstName}}'s Classes:</h3>
 <div class="divider"></div>
 <ul ng-repeat="class in classes">
-    <li><a class=" classBtn waves-effect waves-light btn"href="#!/classes/classDash/{{class.id}}"><i class="material-icons left">school</i>{{class.name}}</a>
-    
+    <li>
+        <a class=" classBtn waves-effect waves-light btn" href="#!/classes/classDash/{{class.id}}">
+            <i class="material-icons left">school</i>{{class.name}}</a>
+
 </ul>
 
-<button class = "dashButton waves-effect waves-light btn-large" id="addClass" ng-click= "addClass()"><i class="material-icons left">group_add
-</i>Add Class</button>
+<button class="dashButton waves-effect waves-light btn-large" id="addClass" ng-click="addClass()">
+    <i class="material-icons left">group_add
+    </i>Add Class</button>

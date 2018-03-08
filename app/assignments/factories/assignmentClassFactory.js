@@ -1,6 +1,6 @@
 angular
     .module("TeacherHub")
-    .factory("assignmentClassFactory", function($http){
+    .factory("assignmentClassFactory", function ($http) {
         return Object.create(null, {
             "assignmentRelCache": {
                 value: null,
@@ -8,12 +8,12 @@ angular
                 writable: true
             },
             "add": {
-                value: function(relObj){
+                value: function (relObj) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
                                 .post(`https://client-side-caps.firebaseio.com/assignmentClass/.json?auth=${idToken}`, relObj)
-                                .then(r=>{
+                                .then(r => {
                                     this.get()
                                     return r
                                 })
@@ -21,12 +21,12 @@ angular
                 }
             },
             "get": {
-                value: function(){
+                value: function () {
                     return $http
                         .get("https://client-side-caps.firebaseio.com/assignmentClass/.json")
                         .then(relData => {
                             let relArray = []
-                            for(let key in relData.data){
+                            for (let key in relData.data) {
                                 relData.data[key].id = key
                                 relArray.push(relData.data[key])
                             }
@@ -37,12 +37,12 @@ angular
                 }
             },
             "delete": {
-                value: function(relId){
+                value: function (relId) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
                                 .delete(`https://client-side-caps.firebaseio.com/assignmentClass/${relId}/.json?auth=${idToken}`)
-                                .then(r=>{
+                                .then(r => {
                                     this.get()
                                     return r
                                 })

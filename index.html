@@ -1,5 +1,5 @@
-
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +7,19 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
     <link rel="stylesheet" href="css/styles.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>TeacherHUB</title>
 </head>
-<body class= "#fafafa grey lighten-5" ng-app = "TeacherHub">
+
+<body class="#fafafa grey lighten-5" ng-app="TeacherHub">
     <nav ng-include="'app/teachers/partials/navBar.html'"></nav>
 
-    <div class = "container" id="mainView" ng-view></div>
-    
+    <div class="container" id="mainView" ng-view></div>
 
-    
+
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="./app/materialize.js"></script>
 
@@ -31,7 +32,7 @@
 
     <script src="./app/auth/factories/AuthFactory.js"></script>
     <script src="./app/auth/controllers/AuthCtrl.js"></script>
-    
+
     <script src="./app/teachers/controllers/loginController.js"></script>
     <script src="./app/teachers/factories/userFactory.js"></script>
     <script src="./app/teachers/controllers/teacherDashController.js"></script>
@@ -46,8 +47,8 @@
 
     <script src="./app/students/controllers/addStudentCtrl.js"></script>
     <script src="./app/students/factories/studentFactory.js"></script>
-    <script src= "./app/students/controllers/studentDashCtrl.js"></script>
-    <script src= "./app/students/controllers/studentListCtrl.js"></script>
+    <script src="./app/students/controllers/studentDashCtrl.js"></script>
+    <script src="./app/students/controllers/studentListCtrl.js"></script>
 
     <script src="./app/assignments/factories/assignmentFactory.js"></script>
     <script src="./app/assignments/controllers/assignmentCreatorCtrl.js"></script>
@@ -62,4 +63,5 @@
 
 
 </body>
+
 </html>

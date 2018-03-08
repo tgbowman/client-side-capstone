@@ -1,18 +1,19 @@
 angular.module("TeacherHub")
-    .factory("AuthFactory", function($http, $timeout, $location, $route) {
+    .factory("AuthFactory", function ($http, $timeout, $location, $route) {
         let currentUserData = null
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 currentUserData = user
                 console.log("User is authenticated")
-                if($location.url() !== "/teachers/teacherDash"){
+                if ($location.url() !== "/teachers/teacherDash") {
                     $timeout(function () {
                         $location.url("/teachers/teacherDash")
-                    }, 100)} else {
+                    }, 100)
+                } else {
                     $route.reload()
                 }
-    
+
             } else {
                 currentUserData = null
                 console.log("User is not authenticated")

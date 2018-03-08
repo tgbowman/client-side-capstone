@@ -1,13 +1,13 @@
 angular
     .module("TeacherHub")
-    .factory("assignmentFactory", function($http){
-        return Object.create(null,{
-            "assignmentCache":{
+    .factory("assignmentFactory", function ($http) {
+        return Object.create(null, {
+            "assignmentCache": {
                 value: null,
-                enumerable:true,
+                enumerable: true,
                 writable: true
             },
-            "currentAssignment":{
+            "currentAssignment": {
                 value: null,
                 enumerable: true,
                 writable: true
@@ -28,13 +28,13 @@ angular
                 enumerable: true,
                 writable: true
             },
-            "add":{
-                value: function(assignmentObj){
+            "add": {
+                value: function (assignmentObj) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
                                 .post(`https://client-side-caps.firebaseio.com/assignments/.json?auth=${idToken}`, assignmentObj)
-                                .then( r=>{
+                                .then(r => {
                                     this.get()
                                     return r
                                 }
@@ -42,13 +42,13 @@ angular
                         })
                 }
             },
-            "get":{
-                value: function(){
+            "get": {
+                value: function () {
                     return $http
                         .get("https://client-side-caps.firebaseio.com/assignments/.json")
                         .then(returnData => {
                             let assignmentsArray = []
-                            for(let key in returnData.data){
+                            for (let key in returnData.data) {
                                 returnData.data[key].id = key
                                 assignmentsArray.push(returnData.data[key])
                             }
@@ -59,12 +59,12 @@ angular
                 }
             },
             "delete": {
-                value: function(assignmentId){
+                value: function (assignmentId) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
                                 .delete(`https://client-side-caps.firebaseio.com/assignments/${assignmentId}/.json?auth=${idToken}`)
-                                .then(r=>{
+                                .then(r => {
                                     this.get()
                                     return r
                                 })
@@ -72,12 +72,12 @@ angular
                 }
             },
             "update": {
-                value: function(assignmentId, assignmentObj){
+                value: function (assignmentId, assignmentObj) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
                                 .put(`https://client-side-caps.firebaseio.com/assignments/${assignmentId}/.json?auth=${idToken}`, assignmentObj)
-                                .then(r=>{
+                                .then(r => {
                                     this.get()
                                     return r
                                 })

@@ -1,42 +1,45 @@
-<h3><i class="discIcon medium material-icons left">error</i>Discipline Form:</h3>
+<h3>
+    <i class="discIcon medium material-icons left">error</i>Discipline Form:</h3>
 <div class="divider"></div>
 <br>
-<form  ng-submit="addDiscipline()">
+<form ng-submit="addDiscipline()">
     <div id="discForm" class="input-field">
-        <select ng-model= "newDiscipline.classId" ng-change = "getStudents()">
-            <option ng-repeat = "class in classes" value="{{class.id}}">{{class.name}}</option>
+        <select ng-model="newDiscipline.classId" ng-change="getStudents()">
+            <option ng-repeat="class in classes" value="{{class.id}}">{{class.name}}</option>
         </select>
         <label> Select Class:</label>
-    </div> 
+    </div>
     <br>
 
     <div>
         <input type="text" class="datepicker" ng-model="newDiscipline.date" ng-change="getStudents()">
         <label>Date of Incident:</label>
-    </div> 
+    </div>
     <br>
 
     <div>
-        <select class ="browser-default" ng-model = "newDiscipline.studentId">
-            <option ng-repeat = "student in students" value="{{student.id}}">{{student.studentFirstName}} {{student.studentLastName}}</option>
+        <select class="browser-default" ng-model="newDiscipline.studentId">
+            <option ng-repeat="student in students" value="{{student.id}}">{{student.studentFirstName}} {{student.studentLastName}}</option>
         </select>
         <label>Student:</label>
     </div>
     <br>
 
     <div class="input-field">
-        <select ng-model = "newDiscipline.infraction">
-            <option ng-repeat = "infraction in infractions" value = "{{infraction}}">{{infraction}}</option>
+        <select ng-model="newDiscipline.infraction">
+            <option ng-repeat="infraction in infractions" value="{{infraction}}">{{infraction}}</option>
         </select>
         <label>Infraction:</label>
-    </div> 
-    <br>   
+    </div>
+    <br>
 
     <label>
-        Detailed account of incident: <br>
-        <textarea ng-model= "newDiscipline.details" placeholder="Detailed description of incident"></textarea>
+        Detailed account of incident:
+        <br>
+        <textarea ng-model="newDiscipline.details" placeholder="Detailed description of incident"></textarea>
     </label>
-    <br>    
+    <br>
 
-    <button class="formBtn waves-effect waves-light btn" ng-if = "newDiscipline.details"><i class="material-icons left">error</i>Submit Discipline Form</button>
+    <button class="formBtn waves-effect waves-light btn" ng-if="newDiscipline.details">
+        <i class="material-icons left">error</i>Submit Discipline Form</button>
 </form>

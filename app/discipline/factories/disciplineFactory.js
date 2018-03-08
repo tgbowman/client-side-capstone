@@ -1,6 +1,6 @@
 angular
     .module("TeacherHub")
-    .factory("disciplineFactory", function($http){
+    .factory("disciplineFactory", function ($http) {
         return Object.create(null, {
             "disciplineCache": {
                 value: null,
@@ -12,13 +12,13 @@ angular
                 enumerable: true,
                 writable: true
             },
-            "add":{
-                value: function(disciplineObj){
+            "add": {
+                value: function (disciplineObj) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
                                 .post(`https://client-side-caps.firebaseio.com/discipline/.json?auth=${idToken}`, disciplineObj)
-                                .then(returnData=>{
+                                .then(returnData => {
                                     this.get()
                                     return returnData
                                 })
@@ -26,12 +26,12 @@ angular
                 }
             },
             "get": {
-                value: function(){
+                value: function () {
                     return $http
                         .get("https://client-side-caps.firebaseio.com/discipline/.json")
-                        .then(disciplineData=>{
+                        .then(disciplineData => {
                             let disciplineArray = []
-                            for (let key in disciplineData.data){
+                            for (let key in disciplineData.data) {
                                 disciplineData.data[key].id = key
                                 disciplineArray.push(disciplineData.data[key])
                             }
@@ -42,12 +42,12 @@ angular
                 }
             },
             "update": {
-                value: function(disciplineObject){
+                value: function (disciplineObject) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
                                 .put(`https://client-side-caps.firebaseio.com/discipline/${disciplineObject.id}/.json?auth=${idToken}`, disciplineObject)
-                                .then(r=>{
+                                .then(r => {
                                     this.get()
                                     return r
                                 })
@@ -55,12 +55,12 @@ angular
                 }
             },
             "delete": {
-                value: function(disciplineId){
+                value: function (disciplineId) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http
                                 .delete(`https://client-side-caps.firebaseio.com/discipline/${disciplineId}/.json?auth=${idToken}`)
-                                .then(r=>{
+                                .then(r => {
                                     this.get()
                                     return r
                                 })

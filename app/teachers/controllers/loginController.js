@@ -1,5 +1,5 @@
-angular.module("TeacherHub").controller("loginCtrl", function($scope, $location){
+angular.module("TeacherHub").controller("loginCtrl", function ($scope, $location) {
 
-   
+
 
 })
